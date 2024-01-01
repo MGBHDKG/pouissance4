@@ -1,0 +1,62 @@
+body{
+    position: relative;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+input{
+    border: none;
+    width: 60%;
+    height: 30px;
+}
+
+label{
+    font-size: calc(18px + 0.2vw);
+}
+
+button{
+    cursor: pointer;
+    width: 60px;
+    height: 25px;
+    border: none;
+}
+
+#main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 40vh;
+    max-height: 800px;
+    width: 40vh;
+    max-width: 800px;
+    background-color: #dda15e;
+    border-radius: 50px;
+}
+
+#logo{
+    position: absolute;
+    top: 20%;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+#logo img{
+    width: 40px;
+    height: auto;
+}
+
+.input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
