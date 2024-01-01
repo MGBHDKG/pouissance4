@@ -1,3 +1,9 @@
+import io from "socket.io-client";
+
+const socket = io();
+
+socket.emit("msg", "hello world");
+
 const button = document.getElementById("submit-button");
 
 button.addEventListener("click", () => {
