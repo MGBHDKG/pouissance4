@@ -6,8 +6,10 @@ const io = new Server(3000, {
   },
 });
 
+let rooms = new Map();
+
 io.on("connection", (socket) => {
-  socket.on("msg", (msg) => {
-    console.log(msg);
+  socket.on("joinRoom", (roomName, pseudo) => {
+    console.log(roomName, pseudo);
   })
 });

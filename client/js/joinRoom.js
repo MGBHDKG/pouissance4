@@ -1,0 +1,43 @@
+import socket from "../joinSocket";
+
+const button = document.getElementById("submit-button");
+
+function error(msg) {
+    const errorDialog = document.getElementsByClassName("error")[0];
+    const text = document.querySelector('div.error > p:nth-child(2)');
+
+    errorDialog.style.display = "flex";
+    text.textContent = msg;
+
+    setTimeout(() => {
+        errorDialog.style.display = "none";
+        text.textContent = "";
+    }, 3000)
+}
+
+button.addEventListener("click", () => {
+    const roomName = document.getElementById("roomName").value;
+    const pseudo = document.getElementById("pseudo").value;
+
+    if(pseudo == "" ){
+        error("Veuillez entrer un pseudo !");
+        return;
+    }
+
+    if(pseudo.length > 30 ){
+        error("Pseudo trop long !");
+        return;
+    }
+
+    if(roomName == "" ){
+        error("Veuillez entrer un nom de room !");
+        return;
+    }
+
+    if(roomName.length > 30 ){
+        error("Nom de room trop long !");
+        return;
+    }
+
+    socket.emit("joinRoom", roomName, pseudo);
+});
