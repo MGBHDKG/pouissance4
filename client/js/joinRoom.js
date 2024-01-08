@@ -41,3 +41,19 @@ button.addEventListener("click", () => {
 
     socket.emit("joinRoom", roomName, pseudo);
 });
+
+socket.on("error", msg =>{
+    error(msg);
+})
+
+socket.on("joinRoom", (pseudo) => {
+    const room = document.getElementById("room");
+    const game = document.getElementById("game");
+
+    room.style.display = "none";
+    game.style.display = "block";
+
+    const p = document.querySelector("#waitScreen p");
+    console.log(p);
+    p.textContent = pseudo;
+})
