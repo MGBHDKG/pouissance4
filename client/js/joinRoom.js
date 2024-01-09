@@ -1,6 +1,7 @@
 import socket from "../joinSocket";
 
 const button = document.getElementById("submit-button");
+let roomName;
 
 function error(msg) {
     const errorDialog = document.getElementsByClassName("error")[0];
@@ -24,7 +25,7 @@ button.addEventListener("click", () => {
         return;
     }
 
-    if(pseudo.length > 30 ){
+    if(pseudo.length > 10 ){
         error("Pseudo trop long !");
         return;
     }
@@ -44,9 +45,9 @@ button.addEventListener("click", () => {
 
 socket.on("error", msg =>{
     error(msg);
-})
+});
 
-socket.on("joinRoom", (pseudo) => {
+socket.on("joinRoom", (pseudo, roomName) => {
     const room = document.getElementById("room");
     const game = document.getElementById("game");
 
@@ -54,6 +55,11 @@ socket.on("joinRoom", (pseudo) => {
     game.style.display = "block";
 
     const p = document.querySelector("#waitScreen p");
-    console.log(p);
     p.textContent = pseudo;
+
+    roomName = roomName;
+});
+
+socket.on("newPlayer", pseudo => {
+    console.log(pseudo);
 })

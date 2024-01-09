@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../joinSocket.js" type="module"></script>
     <script src="./js/joinRoom.js" type="module"></script>
+    <script src="./js/gameGrid.js" type="module"></script>
     <link rel="stylesheet" href="./css/game.css">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/index.css">
@@ -36,12 +37,22 @@
         </div>
     </div>
     <div id="game">
-        <div id="waitScreen">
-            Attente d'un autre joueur...
-            <p></p>
+        <div id="logo">
+            <img src="./assets/olympic-games-logo.jpg" alt="logo">
         </div>
         <div id="gameScreen">
+            <div class="player">
+                <p>bondour</p>
+            </div>
+            <!-- <div id="waitScreen">
+                Attente d'un <br> autre joueur...
+            </div> -->
+            <canvas>
 
+            </canvas>
+            <div class="player">
+                <p>aled</p>
+            </div>
         </div>
     </div>
 </body>

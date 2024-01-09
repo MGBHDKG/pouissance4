@@ -1,3 +1,30 @@
-#game{
+#room{
     display: none;
+}
+
+#game{
+    /*display: none;*/
+    color: white;
+}
+
+#gameScreen{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#waitScreen{
+    font-size: calc(20px + 1vw);
+}
+
+.player p{
+    font-size: 20px;
+}
+
+canvas{
+    height: 500px;
+    width: 500px;
+    background-color: blue;
 }

@@ -15,7 +15,7 @@ io.on("connection", (socket) => {
     if(rooms.has(roomName)){
       const admin = rooms.get(roomName);
 
-      if(admin.length > 2){
+      if(admin.length > 1){
         io.to(socket.id).emit("error", "Cette room est déjà complète !")
         return;
       }
@@ -25,12 +25,13 @@ io.on("connection", (socket) => {
         return;
       }
 
-      admin.players[1] = {player: pseudo, id: socket.id};
+      admin.push({player: pseudo, id: socket.id});
       rooms.set(roomName, admin);
-      playersID.set(socket.id, pseudo);
+
+      io.to(roomName).emit("newPlayer", pseudo);
       socket.join(roomName);
 
-      io.to(socket.id).emit("joinRoom", pseudo);
+      io.to(socket.id).emit("joinRoom", pseudo, roomName);
 
       return;
     }
@@ -39,6 +40,6 @@ io.on("connection", (socket) => {
 
     socket.join(roomName);
 
-    io.to(socket.id).emit("joinRoom", pseudo);
+    io.to(socket.id).emit("joinRoom", pseudo, roomName);
   })
 });
