@@ -16,6 +16,17 @@ function error(msg) {
     }, 3000)
 }
 
+function displayGrid(){
+    const waitScreen = document.getElementById("waitScreen");
+    const canva = document.querySelector("canvas");
+    const yellowCoin = document.getElementsByClassName("cercle");
+
+    waitScreen.style.display = "none";
+    canva.style.display = "block";
+    
+    yellowCoin[1].style.display = "block";
+}
+
 button.addEventListener("click", () => {
     const roomName = document.getElementById("roomName").value;
     const pseudo = document.getElementById("pseudo").value;
@@ -47,19 +58,34 @@ socket.on("error", msg =>{
     error(msg);
 });
 
-socket.on("joinRoom", (pseudo, roomName) => {
+socket.on("joinRoom", (pseudo1, pseudo2, roomName) => {
     const room = document.getElementById("room");
     const game = document.getElementById("game");
 
     room.style.display = "none";
     game.style.display = "block";
 
-    const p = document.querySelector("#waitScreen p");
-    p.textContent = pseudo;
+    const players = document.querySelectorAll(".player");
+    const p1 = players[0].querySelector("p");
+
+    p1.textContent = pseudo1;
 
     roomName = roomName;
+
+    if(pseudo2 != null){
+        console.log(pseudo1, pseudo2);
+        const p2 = players[1].querySelector("p");   
+        p2.textContent = pseudo2;
+
+        displayGrid();
+    }
 });
 
 socket.on("newPlayer", pseudo => {
-    console.log(pseudo);
+    const players = document.querySelectorAll(".player");
+    const p1 = players[1].querySelector("p");
+
+    p1.textContent = pseudo;
+
+    displayGrid();
 })

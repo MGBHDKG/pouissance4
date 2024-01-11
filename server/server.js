@@ -31,7 +31,7 @@ io.on("connection", (socket) => {
       io.to(roomName).emit("newPlayer", pseudo);
       socket.join(roomName);
 
-      io.to(socket.id).emit("joinRoom", pseudo, roomName);
+      io.to(socket.id).emit("joinRoom", admin[0].player, pseudo, roomName);
 
       return;
     }
@@ -40,6 +40,6 @@ io.on("connection", (socket) => {
 
     socket.join(roomName);
 
-    io.to(socket.id).emit("joinRoom", pseudo, roomName);
+    io.to(socket.id).emit("joinRoom", pseudo, null, roomName);
   })
 });
