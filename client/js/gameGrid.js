@@ -1,6 +1,9 @@
 let canvas = document.querySelector("canvas");
 let context = canvas.getContext('2d');
 
+let xGrid = canvas.offsetLeft;
+let yGrid = canvas.offsetTop;
+
 
 (function drawGrid(){
     context.fillStyle = '#283618';
@@ -14,3 +17,5 @@ let context = canvas.getContext('2d');
         }
     }
 })()
+
+console.log(xGrid,yGrid);

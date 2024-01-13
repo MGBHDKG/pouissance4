@@ -4,6 +4,7 @@
 }
 
 #gameScreen{
+    position: relative;
     display: flex;
     width: 100vw;
     height: 100vh;
@@ -44,4 +45,45 @@
 canvas{
     display: none;
     background-color: #BC6C25;
+}
+
+#insertCoinButtons button{
+    position: absolute;
+    border: solid black 1px;
+}
+
+#insertCoinButtons button:first-child{
+    top: 219px;
+    left: 574px;
+}
+
+#insertCoinButtons button:nth-child(2){
+    top: 219px;
+    left: 644px;
+}
+
+#insertCoinButtons button:nth-child(3){
+    top: 289px;
+    left: 574px;
+}
+
+#insertCoinButtons button:nth-child(4){
+    top: 289px;
+    left: 644px;
+}
+
+
+
+#insertCoinButtons button{
+    width: 70px;
+    height: 70px;
+}
+
+/*TEST GRILLES*/
+#game, canvas{
+    display: block;
+}
+
+#room, #waitScreen{
+    display: none;
 }
