@@ -33,7 +33,7 @@
     background-color: red;
 }
 
-#gameScreen .player:nth-child(4) .cercle {
+#gameScreen .player:nth-child(5) .cercle {
     background-color: yellow;
     display: none;
 }
@@ -47,43 +47,24 @@ canvas{
     background-color: #BC6C25;
 }
 
-#insertCoinButtons button{
+#insertCoinButtons{
     position: absolute;
-    border: solid black 1px;
+    display: none;
 }
-
-#insertCoinButtons button:first-child{
-    top: 219px;
-    left: 574px;
-}
-
-#insertCoinButtons button:nth-child(2){
-    top: 219px;
-    left: 644px;
-}
-
-#insertCoinButtons button:nth-child(3){
-    top: 289px;
-    left: 574px;
-}
-
-#insertCoinButtons button:nth-child(4){
-    top: 289px;
-    left: 644px;
-}
-
-
 
 #insertCoinButtons button{
-    width: 70px;
-    height: 70px;
+    background-color: rgba(0,0,0,0.2);
+}
+
+#insertCoinButtons button{
+    width: 67px;
 }
 
 /*TEST GRILLES*/
-#game, canvas{
+/* #game, canvas, #insertCoinButtons{
     display: block;
 }
 
 #room, #waitScreen{
     display: none;
-}
+} */

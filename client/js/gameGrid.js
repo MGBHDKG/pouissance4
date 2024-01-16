@@ -1,11 +1,11 @@
-let canvas = document.querySelector("canvas");
-let context = canvas.getContext('2d');
+export default function drawGrid()
+{
+    let canvas = document.querySelector("canvas");
+    let context = canvas.getContext('2d');
 
-let xGrid = canvas.offsetLeft;
-let yGrid = canvas.offsetTop;
+    let xGrid = canvas.offsetLeft;
+    let yGrid = canvas.offsetTop;
 
-
-(function drawGrid(){
     context.fillStyle = '#283618';
     context.beginPath();
 
@@ -16,6 +16,12 @@ let yGrid = canvas.offsetTop;
             context.closePath();
         }
     }
-})()
 
-console.log(xGrid,yGrid);
+    const buttonInsertCoins = document.getElementsByClassName("buttonInsertCoins");
+
+    for(let i=0; i<7; i++){
+        buttonInsertCoins[i].style.top = yGrid + "px";
+        buttonInsertCoins[i].style.left = xGrid + i*70 + "px";
+        buttonInsertCoins[i].style.height = 500 + "px";
+    }
+}
