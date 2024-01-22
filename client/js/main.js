@@ -3,12 +3,13 @@ import socket from "./socket/joinSocket";
 import displayNewPlayer from "./room/displayNewPlayer";
 import tryJoinRoom from "./room/tryJoinRoom";
 import joinRoom from "./room/joinRoom";
+import disableButtons from "./grid/disableButtons";
 
 import previewCoin from "./grid/previewCoin";
 
 const submitButton = document.getElementById("submit-button");
 const insertCoinButtons = document.getElementsByClassName("buttonInsertCoins");
-let roomName;
+var roomName;
 
 function error(msg) {
     const errorDialog = document.getElementsByClassName("error")[0];
@@ -25,6 +26,10 @@ function error(msg) {
 
 for(const button of insertCoinButtons){
     button.addEventListener("mouseover", () => previewCoin());
+
+    button.addEventListener("click", () => {
+        socket.emit("insertCoin", roomName);
+    })
 }
 
 submitButton.addEventListener("click", () => tryJoinRoom());
@@ -33,6 +38,11 @@ socket.on("error", msg =>{
     error(msg);
 });
 
-socket.on("joinRoom", (pseudo1, pseudo2, roomName) => joinRoom(pseudo1, pseudo2, roomName));
+socket.on("joinRoom", (pseudo1, pseudo2, room) => {
+    roomName = room;
+    joinRoom(pseudo1, pseudo2, roomName);
+});
 
-socket.on("newPlayer", (player) => displayNewPlayer(player))
+socket.on("newPlayer", (player) => displayNewPlayer(player));
+
+/*socket.on("notYourTurn", () => disableButtons());*/
