@@ -4,6 +4,7 @@ import displayNewPlayer from "./room/displayNewPlayer";
 import tryJoinRoom from "./room/tryJoinRoom";
 import joinRoom from "./room/joinRoom";
 import disableButtons from "./grid/disableButtons";
+import enableButtons from "./grid/enableButtons";
 
 import previewCoin from "./grid/previewCoin";
 
@@ -24,11 +25,11 @@ function error(msg) {
     }, 3000)
 }
 
-for(const button of insertCoinButtons){
-    button.addEventListener("mouseover", () => previewCoin());
+for(let i=0; i<7; i++){
+    insertCoinButtons[i].addEventListener("mouseover", () => previewCoin());
 
-    button.addEventListener("click", () => {
-        socket.emit("insertCoin", roomName);
+    insertCoinButtons[i].addEventListener("click", () => {
+        socket.emit("insertCoin", roomName, i);
     })
 }
 
@@ -45,4 +46,7 @@ socket.on("joinRoom", (pseudo1, pseudo2, room) => {
 
 socket.on("newPlayer", (player) => displayNewPlayer(player));
 
-/*socket.on("notYourTurn", () => disableButtons());*/
+socket.on("notYourTurn", () => disableButtons());
+socket.on("yourTurn", () => enableButtons());
+
+socket.on("grid", (grid) => console.log(grid));
