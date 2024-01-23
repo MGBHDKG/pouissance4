@@ -6,24 +6,13 @@ import joinRoom from "./room/joinRoom";
 import disableButtons from "./grid/disableButtons";
 import enableButtons from "./grid/enableButtons";
 
+import error from "./error/error";
+
 import previewCoin from "./grid/previewCoin";
 
 const submitButton = document.getElementById("submit-button");
 const insertCoinButtons = document.getElementsByClassName("buttonInsertCoins");
 var roomName;
-
-function error(msg) {
-    const errorDialog = document.getElementsByClassName("error")[0];
-    const text = document.querySelector('div.error > p:nth-child(2)');
-
-    errorDialog.style.display = "flex";
-    text.textContent = msg;
-
-    setTimeout(() => {
-        errorDialog.style.display = "none";
-        text.textContent = "";
-    }, 3000)
-}
 
 for(let i=0; i<7; i++){
     insertCoinButtons[i].addEventListener("mouseover", () => previewCoin());

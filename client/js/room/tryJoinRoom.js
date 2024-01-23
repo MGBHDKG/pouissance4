@@ -1,4 +1,5 @@
 import socket from "../socket/joinSocket";
+import error from "../error/error";
 
 export default function tryJoinRoom(){
     const roomName = document.getElementById("roomName").value;
