@@ -17,7 +17,10 @@ export default function insertCoin(roomName, col, grids, rooms, socket, io)
           {
             grid[k][col] = i+1;
             
-            checkWin(grid, i+1);
+            if(checkWin(grid, i+1) == true)
+            {
+              io.to(roomName).emit("win", room[i].player);
+            }
 
             room[otherPlayer].isHisTurn = false;
             room[otherPlayer].isHisTurn = true;

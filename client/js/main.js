@@ -39,3 +39,5 @@ socket.on("notYourTurn", () => disableButtons());
 socket.on("yourTurn", () => enableButtons());
 
 socket.on("grid", (grid) => console.log(grid));
+
+socket.on("win", (pseudo) => alert(pseudo + " a gagné la partie !"));
