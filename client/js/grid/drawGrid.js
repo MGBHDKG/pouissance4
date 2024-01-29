@@ -18,10 +18,4 @@ export default function drawGrid()
     }
 
     const buttonInsertCoins = document.getElementsByClassName("buttonInsertCoins");
-
-    for(let i=0; i<7; i++){
-        buttonInsertCoins[i].style.top = yGrid + "px";
-        buttonInsertCoins[i].style.left = xGrid + i*70 + "px";
-        buttonInsertCoins[i].style.height = 500 + "px";
-    }
 }

@@ -8,7 +8,7 @@ export default function displayGrid(){
 
     waitScreen.style.display = "none";
     canva.style.display = "block";
-    buttonDiv.style.display = "block";
+    buttonDiv.style.display = "flex";
     yellowCoin[1].style.display = "block";
 
     drawGrid();

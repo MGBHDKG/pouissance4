@@ -50,14 +50,14 @@ canvas{
 #insertCoinButtons{
     position: absolute;
     display: none;
+    justify-content: space-evenly;
+    width: 500px;
 }
 
 #insertCoinButtons button{
     background-color: transparent;
-}
-
-#insertCoinButtons button{
-    width: 67px;
+    height: 500px;
+    width: 60px;
 }
 
 /*TEST GRILLES*/
