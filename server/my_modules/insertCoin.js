@@ -10,16 +10,21 @@ export default function insertCoin(roomName, col, grids, rooms, socket, io)
       if(room[i].id === socket.id && room[i].isHisTurn == true)
       {
         let otherPlayer = (i + 1) % 2
-        console.log(i, otherPlayer);
+        
         for(let k=6; k>0; k--)
         {
           if(grid[k][col] == 0)
           {
             grid[k][col] = i+1;
-            
+
+            io.to(roomName).emit("grid", grid, k, col, room[i].color);
+
             if(checkWin(grid, i+1) == true)
             {
-              io.to(roomName).emit("win", room[i].player);
+              setTimeout(() => {
+                io.to(roomName).emit("win", room[i].player);
+              }, 200);
+              return;
             }
 
             room[otherPlayer].isHisTurn = false;
@@ -30,8 +35,6 @@ export default function insertCoin(roomName, col, grids, rooms, socket, io)
 
             io.to(socket.id).emit("notYourTurn");
             io.to(room[otherPlayer].id).emit("yourTurn");
-
-            io.to(roomName).emit("grid", grid);
 
             return;
           }

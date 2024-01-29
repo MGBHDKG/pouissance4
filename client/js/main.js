@@ -9,13 +9,17 @@ import enableButtons from "./grid/enableButtons";
 import error from "./error/error";
 
 import previewCoin from "./grid/previewCoin";
+import cancelPreview from "./grid/cancelPreview";
+import drawCoin from "./grid/drawCoin";
 
 const submitButton = document.getElementById("submit-button");
 const insertCoinButtons = document.getElementsByClassName("buttonInsertCoins");
 var roomName;
 
 for(let i=0; i<7; i++){
-    insertCoinButtons[i].addEventListener("mouseover", () => previewCoin());
+    insertCoinButtons[i].addEventListener("mouseover", () => previewCoin(insertCoinButtons[i]));
+
+    insertCoinButtons[i].addEventListener("mouseleave", () => cancelPreview(insertCoinButtons[i]));
 
     insertCoinButtons[i].addEventListener("click", () => {
         socket.emit("insertCoin", roomName, i);
@@ -38,6 +42,9 @@ socket.on("newPlayer", (player) => displayNewPlayer(player));
 socket.on("notYourTurn", () => disableButtons());
 socket.on("yourTurn", () => enableButtons());
 
-socket.on("grid", (grid) => console.log(grid));
+socket.on("grid", (grid, coinPositionY, coinPositionX, color) => {
+    console.log(grid, coinPositionX, coinPositionY, color);
+    drawCoin(coinPositionX, coinPositionY, color);
+});
 
 socket.on("win", (pseudo) => alert(pseudo + " a gagné la partie !"));
