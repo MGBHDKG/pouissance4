@@ -2,17 +2,18 @@ import fastify from "fastify";
 import { Server } from "socket.io";
 import insertCoin from "./my_modules/insertCoin.js";
 import secondPlayerJoin from "./my_modules/secondPlayerJoin.js";
+import fastifyCors from "fastify-cors";
 
 const app = fastify();
 
 const server = app.server;
 
-const io = new Server(server, {
-  cors: {
-    origin: "https://pouissance4.netlify.app",
-    credentials: true
-  },
+app.register(fastifyCors, {
+  origin: "https://pouissance4.netlify.app",
+  credentials: true
 });
+
+const io = new Server(server);
 
 let rooms = new Map();
 let grids = new Map();
