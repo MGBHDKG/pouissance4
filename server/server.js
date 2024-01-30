@@ -5,7 +5,9 @@ import secondPlayerJoin from "./my_modules/secondPlayerJoin.js";
 
 const io = new Server(3000, {
   cors :{
-    origin: "https://pouissance4.netlify.app/"
+    origin: "https://pouissance4.netlify.app/",
+    methods: ["GET", "POST"],
+    credentials: true
   },
 });
 
