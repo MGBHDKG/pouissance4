@@ -1,4 +1,7 @@
 import fastify from 'fastify';
+import { Server } from "socket.io";
+import insertCoin from "./my_modules/insertCoin.js";
+import secondPlayerJoin from "./my_modules/secondPlayerJoin.js";
 
 const app = fastify();
 
@@ -24,7 +27,7 @@ app.addHook('onRequest', (request, reply, done) => {
 });
 
 // Définissez vos routes et gestion Socket.IO ici
-const io = new Server(server, {
+const io = new Server(app.server, {
   cors: {
     origin: 'https://pouissance4.netlify.app',
     credentials: true,
