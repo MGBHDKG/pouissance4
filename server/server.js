@@ -11,6 +11,8 @@ const io = new Server(3000, {
   },
 });
 
+console.log("hello")
+
 let rooms = new Map();
 let grids = new Map();
 
