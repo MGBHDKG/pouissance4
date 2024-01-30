@@ -6,19 +6,14 @@ import secondPlayerJoin from "./my_modules/secondPlayerJoin.js";
 const app = fastify();
 
 app.addHook('onRequest', (request, reply, done) => {
-  // Autorisez l'origine spécifique (ou toutes les origines avec '*')
-  reply.header('Access-Control-Allow-Origin', 'https://pouissance4.netlify.app');
+  reply.header('Access-Control-Allow-Origin', 'https://pouissance4.netlify.app/');
 
-  // Autorisez les méthodes HTTP spécifiques que vous utilisez (par exemple, GET, POST, PUT, DELETE)
   reply.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
 
-  // Autorisez les en-têtes HTTP spécifiques que vous utilisez
   reply.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
-  // Activez les cookies (si nécessaire)
   reply.header('Access-Control-Allow-Credentials', 'true');
 
-  // Si la méthode HTTP est OPTIONS, renvoyez une réponse vide
   if (request.method === 'OPTIONS') {
     reply.status(200).send('');
   } else {
@@ -26,10 +21,9 @@ app.addHook('onRequest', (request, reply, done) => {
   }
 });
 
-// Définissez vos routes et gestion Socket.IO ici
 const io = new Server(app.server, {
   cors: {
-    origin: 'https://pouissance4.netlify.app',
+    origin: 'https://pouissance4.netlify.app/',
     credentials: true,
   },
 });
