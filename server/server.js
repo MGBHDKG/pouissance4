@@ -1,19 +1,35 @@
-import fastify from "fastify";
-import { Server } from "socket.io";
-import insertCoin from "./my_modules/insertCoin.js";
-import secondPlayerJoin from "./my_modules/secondPlayerJoin.js";
-import fastifyCors from "fastify-cors";
+import fastify from 'fastify';
 
 const app = fastify();
 
-const server = app.server;
+app.addHook('onRequest', (request, reply, done) => {
+  // Autorisez l'origine spécifique (ou toutes les origines avec '*')
+  reply.header('Access-Control-Allow-Origin', 'https://pouissance4.netlify.app');
 
-app.register(fastifyCors, {
-  origin: "https://pouissance4.netlify.app",
-  credentials: true
+  // Autorisez les méthodes HTTP spécifiques que vous utilisez (par exemple, GET, POST, PUT, DELETE)
+  reply.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+
+  // Autorisez les en-têtes HTTP spécifiques que vous utilisez
+  reply.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+
+  // Activez les cookies (si nécessaire)
+  reply.header('Access-Control-Allow-Credentials', 'true');
+
+  // Si la méthode HTTP est OPTIONS, renvoyez une réponse vide
+  if (request.method === 'OPTIONS') {
+    reply.status(200).send('');
+  } else {
+    done();
+  }
 });
 
-const io = new Server(server);
+// Définissez vos routes et gestion Socket.IO ici
+const io = new Server(server, {
+  cors: {
+    origin: 'https://pouissance4.netlify.app',
+    credentials: true,
+  },
+});
 
 let rooms = new Map();
 let grids = new Map();
@@ -43,6 +59,10 @@ io.on("connection", (socket) => {
 
 const PORT = 3000;
 
-app.listen(PORT, () => {
+app.listen(PORT, (err) => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
   console.log(`Server is running on port ${PORT}`);
 });
