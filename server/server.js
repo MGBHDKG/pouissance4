@@ -6,7 +6,7 @@ import secondPlayerJoin from "./my_modules/secondPlayerJoin.js";
 const app = fastify();
 
 app.addHook('onRequest', (request, reply, done) => {
-  reply.header('Access-Control-Allow-Origin', 'https://pouissance4.netlify.app/');
+  reply.header('Access-Control-Allow-Origin', 'https://pouissance4.netlify.app');
 
   reply.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
 
@@ -23,7 +23,7 @@ app.addHook('onRequest', (request, reply, done) => {
 
 const io = new Server(app.server, {
   cors: {
-    origin: 'https://pouissance4.netlify.app/',
+    origin: 'https://pouissance4.netlify.app',
     credentials: true,
   },
 });
