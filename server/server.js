@@ -9,7 +9,7 @@ const server = app.server;
 
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: "https://pouissance4.netlify.app"
   },
 });
 
