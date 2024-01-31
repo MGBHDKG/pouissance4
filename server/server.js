@@ -1,29 +1,30 @@
-import fastify from 'fastify';
-import { Server } from "socket.io";
-import { createServer } from 'http';
-import fastifyCors from '@fastify/cors';
+import { Server } from 'socket.io';
+import express from "express";
+import cors from "cors";
 
 import insertCoin from "./my_modules/insertCoin.js";
 import secondPlayerJoin from "./my_modules/secondPlayerJoin.js";
 
-const app = fastify();
+const app = express();
+app.use(cors());
 
-const corsParam = {
-  origin: ["http://localhost:8080", "https://pouissance4.netlify.app"],
-  methods: ['GET'],
+const corsParams = {
+  origin: 'https://pouissance4.netlify.app',
+  methods: ['GET','POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}
+  credentials: true,
+};
 
-await app.register(fastifyCors, corsParam);
+const server = app.listen(3000, () => {
+  console.log("Le serveur est lancé !")
+});
 
-app.get('/test', async (req, rep) => {
-  return "hello world";
+app.get("/", (req, res) =>{
+  res.send("Serveur fonctionnel !")
 })
 
-const httpServer = createServer(app)
-const io = new Server(httpServer, {
-  cors: corsParam
+const io = new Server(server, {
+  cors: corsParams
 });
 
 let rooms = new Map();
@@ -54,11 +55,4 @@ io.on("connection", (socket) =>
   {
     insertCoin(roomName, col, grids, rooms, socket, io);
   });
-});
-
-const PORT = 3000;
-
-httpServer.listen(PORT, () => 
-{
-  console.log(`Server is running on port ${PORT}`);
 });
