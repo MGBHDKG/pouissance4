@@ -6,6 +6,7 @@ import insertCoin from "./my_modules/insertCoin.js";
 import secondPlayerJoin from "./my_modules/secondPlayerJoin.js";
 
 const app = express();
+
 app.use(cors());
 
 const corsParams = {
@@ -14,6 +15,8 @@ const corsParams = {
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
+
+app.options('*', cors(corsParams));
 
 const server = app.listen(3000, () => {
   console.log("Le serveur est lancé !")
