@@ -9,7 +9,7 @@ import secondPlayerJoin from "./my_modules/secondPlayerJoin.js";
 const app = fastify();
 
 const corsParam = {
-  origin: ["http://localhost:8080", "https://pouissance4.netlify.app/"],
+  origin: ["http://localhost:8080", "https://pouissance4.netlify.app"],
   methods: ['GET'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
@@ -17,7 +17,7 @@ const corsParam = {
 
 await app.register(fastifyCors, corsParam);
 
-app.get('/', async (req, rep) => {
+app.get('/test', async (req, rep) => {
   return "hello world";
 })
 
