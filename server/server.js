@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 
 const corsParams = {
-  origin: ['https://pouissance4.netlify.app', 'http://localhost:8080'],
+  origin: '*',
   methods: ['GET','POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
