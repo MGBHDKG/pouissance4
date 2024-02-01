@@ -12,11 +12,9 @@ app.use(cors());
 const corsParams = {
   origin: '*',
   methods: ['GET','POST'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Origin'],
   credentials: true,
 };
-
-app.options('*', cors(corsParams));
 
 const server = app.listen(3000, () => {
   console.log("Le serveur est lancé !")
