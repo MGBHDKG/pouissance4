@@ -13,6 +13,7 @@ const corsParams = {
   origin: '*',
   methods: ['GET','POST'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Origin'],
+  exposedHeader: ['Authorization', 'Access-Control-Allow-Origin'],
   credentials: true,
 };
 
