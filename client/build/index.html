@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/main.js" type="module"></script>
+    <link rel="stylesheet" href="./css/game.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="icon" href="./assets/logo_P4.png" type="image/png">
+    <title>C la Pouissance</title>
+</head>
+<body>
+    <div class="error-wrapper">
+        <div class="error">
+            <img src="./assets/exclamation_10308693.png" alt="warning icon">
+            <p></p>
+        </div>
+    </div>
+    <div id="room">
+        <div id="logo">
+            <img src="./assets/logo_P4.png" alt="logo">
+        </div>
+        <div id="create-room-form">
+            <div id="create-room">
+                <div class="input">
+                    <label for="pseudo">Pseudo</label>
+                    <input type="text" name="pseudo" id="pseudo">
+                </div>
+                <div class="input">
+                    <label for="roomName">Nom de la room</label>
+                    <input type="text" name="roomName" id="roomName">
+                </div>
+                <button type="button" id="submit-button">Jouer</button>
+            </div>
+        </div>
+    </div>
+    <div id="game">
+        <div id="gameScreen">
+            <div class="player">
+                <div class="cercle"></div>
+                <p></p>
+            </div>
+            <div id="waitScreen">
+                Attente d'un <br> autre joueur...
+            </div>
+            <canvas width="500" height="500">
+
+            </canvas>
+            <div id="insertCoinButtons">
+                <button class="buttonInsertCoins"></button>
+                <button class="buttonInsertCoins"></button>
+                <button class="buttonInsertCoins"></button>
+                <button class="buttonInsertCoins"></button>
+                <button class="buttonInsertCoins"></button>
+                <button class="buttonInsertCoins"></button>
+                <button class="buttonInsertCoins"></button>
+            </div>
+            <div class="player">
+                <div class="cercle"></div>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

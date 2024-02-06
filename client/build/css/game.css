@@ -1,0 +1,70 @@
+#game{
+    display: none;
+    color: white;
+}
+
+#gameScreen{
+    position: relative;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#waitScreen{
+    font-size: calc(20px + 1vw);
+}
+
+.player{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.cercle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+#gameScreen .player:first-child .cercle {
+    background-color: red;
+}
+
+#gameScreen .player:nth-child(5) .cercle {
+    background-color: yellow;
+    display: none;
+}
+  
+.player p{
+    font-size: 20px;
+}
+
+canvas{
+    display: none;
+    background-color: #BC6C25;
+}
+
+#insertCoinButtons{
+    position: absolute;
+    display: none;
+    justify-content: space-evenly;
+    width: 500px;
+}
+
+#insertCoinButtons button{
+    background-color: transparent;
+    height: 500px;
+    width: 60px;
+}
+
+/*TEST GRILLES*/
+/* #game, canvas, #insertCoinButtons{
+    display: block;
+}
+
+#room, #waitScreen{
+    display: none;
+} */
