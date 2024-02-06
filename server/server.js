@@ -38,3 +38,5 @@ io.on("connection", (socket) =>
     insertCoin(roomName, col, grids, rooms, socket, io);
   })
 })
+
+console.log("hello");
