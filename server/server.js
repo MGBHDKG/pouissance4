@@ -9,6 +9,7 @@ const io = new Server(3000, {
     methods: ["GET", "POST"],
     allowedHeaders: ['Content-Type', 'Authorization']
   },
+  host: '0.0.0.0'
 });
 
 let rooms = new Map();
