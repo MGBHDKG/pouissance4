@@ -1,11 +1,14 @@
 import { Server } from "socket.io";
+import { createServer } from "http";
 
 import insertCoin from "./my_modules/insertCoin.js";
 import secondPlayerJoin from "./my_modules/secondPlayerJoin.js";
 
-PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
-const io = new Server(PORT, {
+const httpServer = createServer();
+
+const io = new Server(httpServer, {
   cors :{
     origin: ["http://localhost:8080", "https://pouissance4.vercel.app"],
     methods: ["GET", "POST"],
@@ -13,6 +16,8 @@ const io = new Server(PORT, {
   },
   host: '0.0.0.0'
 });
+
+httpServer.listen(PORT)
 
 let rooms = new Map();
 let grids = new Map();
