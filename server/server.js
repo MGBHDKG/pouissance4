@@ -3,7 +3,9 @@ import { Server } from "socket.io";
 import insertCoin from "./my_modules/insertCoin.js";
 import secondPlayerJoin from "./my_modules/secondPlayerJoin.js";
 
-const io = new Server(3000, {
+PORT = process.env.PORT || 3000;
+
+const io = new Server(PORT, {
   cors :{
     origin: ["http://localhost:8080", "https://pouissance4.vercel.app"],
     methods: ["GET", "POST"],
