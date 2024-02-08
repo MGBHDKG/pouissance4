@@ -6,5 +6,8 @@ export default function displayNewPlayer(pseudo){
 
     p1.textContent = pseudo;
 
+    let yourTurn = document.querySelectorAll("h2");
+    yourTurn[0].style.display = "block";
+
     displayGrid();
 }
