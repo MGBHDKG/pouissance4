@@ -28,6 +28,7 @@ body{
 
 .error{
   position: absolute;
+  z-index: 9999;
   top: 10%;
   display: none;
   align-items: center;
