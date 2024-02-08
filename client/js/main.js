@@ -39,8 +39,8 @@ socket.on("joinRoom", (pseudo1, pseudo2, room) => {
 
 socket.on("newPlayer", (player) => displayNewPlayer(player));
 
-socket.on("notYourTurn", () => disableButtons());
-socket.on("yourTurn", () => enableButtons());
+socket.on("notYourTurn", (i) => disableButtons(i));
+socket.on("yourTurn", (i) => enableButtons(i));
 
 socket.on("grid", (grid, coinPositionY, coinPositionX, color) => {
     console.log(grid, coinPositionX, coinPositionY, color);

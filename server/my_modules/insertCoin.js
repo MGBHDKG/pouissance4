@@ -33,8 +33,8 @@ export default function insertCoin(roomName, col, grids, rooms, socket, io)
             rooms.set(roomName, room);
             grids.set(roomName, grid);
 
-            io.to(socket.id).emit("notYourTurn");
-            io.to(room[otherPlayer].id).emit("yourTurn");
+            io.to(socket.id).emit("notYourTurn", i);
+            io.to(room[otherPlayer].id).emit("yourTurn", otherPlayer);
 
             return;
           }
