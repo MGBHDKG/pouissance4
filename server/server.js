@@ -10,7 +10,7 @@ const httpServer = createServer();
 
 const io = new Server(httpServer, {
   cors :{
-    origin: ["http://localhost:8080", "https://pouissance4.vercel.app"],
+    origin: ["http://localhost:8080", "https://pouissance4.netlify.app/"],
     methods: ["GET", "POST"],
     allowedHeaders: ['Content-Type', 'Authorization']
   },
