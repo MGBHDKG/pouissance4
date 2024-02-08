@@ -11,7 +11,7 @@ export default function insertCoin(roomName, col, grids, rooms, socket, io)
       {
         let otherPlayer = (i + 1) % 2
         
-        for(let k=6; k>0; k--)
+        for(let k=6; k>=0; k--)
         {
           if(grid[k][col] == 0)
           {
