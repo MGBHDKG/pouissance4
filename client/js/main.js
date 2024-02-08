@@ -12,6 +12,8 @@ import previewCoin from "./grid/previewCoin";
 import cancelPreview from "./grid/cancelPreview";
 import drawCoin from "./grid/drawCoin";
 
+console.log("WSHHHHHHH")
+
 const submitButton = document.getElementById("submit-button");
 const insertCoinButtons = document.getElementsByClassName("buttonInsertCoins");
 var roomName;
