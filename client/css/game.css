@@ -1,5 +1,6 @@
 #game{
     display: none;
+    position: relative;
     color: white;
 }
 
@@ -14,6 +15,23 @@
 
 #waitScreen{
     font-size: calc(20px + 1vw);
+}
+
+#winScreen{
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    color: white;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0,0,0,0.8);
+}
+
+#winScreen h3{
+    padding-top: 5%;
 }
 
 .player{

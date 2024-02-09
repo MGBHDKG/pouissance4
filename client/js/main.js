@@ -12,8 +12,6 @@ import previewCoin from "./grid/previewCoin";
 import cancelPreview from "./grid/cancelPreview";
 import drawCoin from "./grid/drawCoin";
 
-console.log("WSHHHHHHH")
-
 const submitButton = document.getElementById("submit-button");
 const insertCoinButtons = document.getElementsByClassName("buttonInsertCoins");
 var roomName;
@@ -45,8 +43,13 @@ socket.on("notYourTurn", (i) => disableButtons(i));
 socket.on("yourTurn", (i) => enableButtons(i));
 
 socket.on("grid", (grid, coinPositionY, coinPositionX, color) => {
-    console.log(grid, coinPositionX, coinPositionY, color);
     drawCoin(coinPositionX, coinPositionY, color);
 });
 
-socket.on("win", (pseudo) => alert(pseudo + " a gagné la partie !"));
+socket.on("win", (pseudo) =>
+{
+    const endGameDiv = document.getElementById("winScreen");
+    const text = document.querySelector("h3");
+    text.innerText = `${pseudo} a gagné la partie !`
+    endGameDiv.style.display = "flex";
+});
