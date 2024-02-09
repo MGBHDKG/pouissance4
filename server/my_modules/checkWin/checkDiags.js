@@ -8,7 +8,6 @@ export default function checkDiags(grid, playerCoin)
             {
                 if(grid[i][k] === playerCoin && grid[i+1][k+1] === playerCoin && grid[i+2][k+2] === playerCoin && grid[i+3][k+3] === playerCoin)
                 {
-                    console.log("diags")
                     return true
                 }
             }
@@ -16,7 +15,6 @@ export default function checkDiags(grid, playerCoin)
             {
                 if(grid[i][k] === playerCoin && grid[i+1][k-1] === playerCoin && grid[i+2][k-2] === playerCoin && grid[i+3][k-3] === playerCoin)
                 {
-                    console.log("diags")
                     return true
                 }
             }

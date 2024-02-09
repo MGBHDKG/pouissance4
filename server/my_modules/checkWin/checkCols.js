@@ -8,7 +8,6 @@ export default function checkCols(grid, playerCoin)
             {
                 if(grid[i][k] === playerCoin && grid[i+1][k] === playerCoin && grid[i+2][k] === playerCoin && grid[i+3][k] === playerCoin)
                 {
-                    console.log("cols")
                     return true
                 }
             }

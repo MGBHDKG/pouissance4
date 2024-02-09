@@ -8,7 +8,6 @@ export default function checkRows(grid, playerCoin)
             {
                 if(grid[i][k] === playerCoin && grid[i][k+1] === playerCoin && grid[i][k+2] === playerCoin && grid[i][k+3] === playerCoin)
                 {
-                    console.log("rows")
                     return true
                 }
             }
