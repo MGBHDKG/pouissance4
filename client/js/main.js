@@ -11,9 +11,11 @@ import error from "./error/error";
 import previewCoin from "./grid/previewCoin";
 import cancelPreview from "./grid/cancelPreview";
 import drawCoin from "./grid/drawCoin";
+import restartGame from "./game/restartGame";
 
 const submitButton = document.getElementById("submit-button");
 const insertCoinButtons = document.getElementsByClassName("buttonInsertCoins");
+const replayButton = document.getElementById("replay");
 var roomName;
 
 for(let i=0; i<7; i++){
@@ -27,6 +29,10 @@ for(let i=0; i<7; i++){
 }
 
 submitButton.addEventListener("click", () => tryJoinRoom());
+
+replayButton.addEventListener("click", () => {
+    socket.emit("replay", roomName);
+})
 
 socket.on("error", msg =>{
     error(msg);
@@ -53,3 +59,8 @@ socket.on("win", (pseudo) =>
     text.innerText = `${pseudo} a gagné la partie !`
     endGameDiv.style.display = "flex";
 });
+
+socket.on("restartGame", () =>
+{
+    restartGame();
+})

@@ -3,6 +3,7 @@ import { createServer } from "http";
 
 import insertCoin from "./my_modules/insertCoin.js";
 import secondPlayerJoin from "./my_modules/secondPlayerJoin.js";
+import createGrid from "./my_modules/createGrid.js";
 
 const PORT = process.env.PORT || 3001;
 
@@ -42,7 +43,22 @@ io.on("connection", (socket) =>
   });
 
   //When user injects a coin
-  socket.on("insertCoin", (roomName, col) => {
+  socket.on("insertCoin", (roomName, col) => 
+  {
     insertCoin(roomName, col, grids, rooms, socket, io);
+  })
+
+  socket.on("replay", roomName => 
+  {
+    let grid = grids.get(roomName);
+    grid = createGrid();
+    grids.set(roomName, grid);
+
+    io.to(roomName).emit("restartGame");
+
+    let room = rooms.get(roomName);
+
+    io.to(room[0].id).emit("yourTurn", 0);
+    io.to(room[1].id).emit("notYourTurn", 1);
   })
 })

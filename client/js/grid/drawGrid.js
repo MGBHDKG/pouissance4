@@ -16,6 +16,4 @@ export default function drawGrid()
             context.closePath();
         }
     }
-
-    const buttonInsertCoins = document.getElementsByClassName("buttonInsertCoins");
 }
