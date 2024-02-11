@@ -17,6 +17,9 @@ const submitButton = document.getElementById("submit-button");
 const insertCoinButtons = document.getElementsByClassName("buttonInsertCoins");
 const replayButton = document.getElementById("replay");
 var roomName;
+var points = [];
+points.push(0);
+points.push(0); 
 
 for(let i=0; i<7; i++){
     insertCoinButtons[i].addEventListener("mouseover", () => previewCoin(insertCoinButtons[i]));
@@ -52,12 +55,18 @@ socket.on("grid", (grid, coinPositionY, coinPositionX, color) => {
     drawCoin(coinPositionX, coinPositionY, color);
 });
 
-socket.on("win", (pseudo) =>
+socket.on("win", (pseudo, indexWinner) =>
 {
     const endGameDiv = document.getElementById("winScreen");
     const text = document.querySelector("h3");
+    const pointsText = document.querySelectorAll("h4");
+
     text.innerText = `${pseudo} a gagné la partie !`
     endGameDiv.style.display = "flex";
+
+    points[indexWinner]++;
+    pointsText[0].innerText = `Points: ${points[0]}`;
+    pointsText[1].innerText = `Points: ${points[1]}`;
 });
 
 socket.on("restartGame", () =>

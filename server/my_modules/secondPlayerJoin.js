@@ -26,5 +26,7 @@ export default function secondPlayerJoin(roomName, pseudo, rooms, grids, socket,
 
     grids.set(roomName, grid);
 
-    io.to(socket.id).emit("notYourTurn");
+    console.log(pseudo + " a rejoint la room " + roomName);
+
+    io.to(socket.id).emit("notYourTurn", 1);
 }

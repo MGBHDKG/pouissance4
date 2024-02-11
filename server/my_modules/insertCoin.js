@@ -17,7 +17,7 @@ export default function insertCoin(roomName, col, grids, rooms, socket, io)
           {
             grid[k][col] = i+1;
 
-            io.to(roomName).emit("grid", grid, k, col, room[i].color);
+            io.to(roomName).emit("grid",k, col, room[i].color);
 
             if(checkWin(grid, i+1) == true)
             {

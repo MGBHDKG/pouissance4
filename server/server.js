@@ -4,6 +4,7 @@ import { createServer } from "http";
 import insertCoin from "./my_modules/insertCoin.js";
 import secondPlayerJoin from "./my_modules/secondPlayerJoin.js";
 import createGrid from "./my_modules/createGrid.js";
+import disconnection from "./my_modules/disconnection.js";
 
 const PORT = process.env.PORT || 3001;
 
@@ -28,7 +29,6 @@ io.on("connection", (socket) =>
   //When an user joins a room
   socket.on("joinRoom", (roomName, pseudo) => 
   {
-    console.log(roomName, pseudo);
     
     if(rooms.has(roomName)){
       secondPlayerJoin(roomName, pseudo, rooms, grids, socket, io);
@@ -38,6 +38,8 @@ io.on("connection", (socket) =>
     rooms.set(roomName, [{player: pseudo, id: socket.id, isHisTurn: true, color: "red"}])
 
     socket.join(roomName);
+
+    console.log(pseudo + " a crée la room " + roomName);
 
     io.to(socket.id).emit("joinRoom", pseudo, null, roomName);
   });
@@ -60,5 +62,10 @@ io.on("connection", (socket) =>
 
     io.to(room[0].id).emit("yourTurn", 0);
     io.to(room[1].id).emit("notYourTurn", 1);
+  })
+
+  socket.on("disconnect", () =>
+  {
+    disconnection(socket, io, rooms);
   })
 })
