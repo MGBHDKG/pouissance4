@@ -22,7 +22,7 @@ export default function insertCoin(roomName, col, grids, rooms, socket, io)
             if(checkWin(grid, i+1) == true)
             {
               setTimeout(() => {
-                io.to(roomName).emit("win", room[i].player);
+                io.to(roomName).emit("win", room[i].player, i);
               }, 200);
               return;
             }

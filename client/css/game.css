@@ -23,7 +23,9 @@
     top: 0;
     left: 0;
     display: none;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
     color: white;
     height: 100vh;
     width: 100vw;
@@ -86,6 +88,10 @@ h2{
     top: -50px;
     width: 200px;
     text-align: center;
+}
+
+h4{
+    display: none;
 }
 
 /*TEST GRILLES*/
