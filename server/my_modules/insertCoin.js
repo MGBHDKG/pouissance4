@@ -15,18 +15,19 @@ export default function insertCoin(roomName, col, grids, rooms, socket, io, mute
         {
           if(grid[k][col] == 0)
           {
-            mutex.set(socket.id, true);
-
-            grid[k][col] = i+1;
-
             let allowToPlay = mutex.get(socket.id);
 
             if(allowToPlay == true) return;
+
+            mutex.set(socket.id, true);
+
+            grid[k][col] = i+1;
 
             io.to(roomName).emit("grid",k, col, room[i].color);
 
             if(checkWin(grid, i+1) == true)
             {
+              mutex.set(socket.id, false);
               setTimeout(() => {
                 io.to(roomName).emit("win", room[i].player, i);
               }, 200);
