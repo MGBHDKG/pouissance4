@@ -15,6 +15,8 @@ export default function disconnection(socket, io, rooms)
 
     if(roomName === undefined) return;
 
+    console.log("La room " + roomName + " a été supprimée")
+
     io.to(roomName).emit("error", "Votre adversaire s'est déconnecté de la room, vous allez être déconnecté");
     setTimeout(() => 
     {
