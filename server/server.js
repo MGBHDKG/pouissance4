@@ -48,7 +48,17 @@ io.on("connection", (socket) =>
   //When user injects a coin
   socket.on("insertCoin", (roomName, col) => 
   {
+    let allowToPlay = mutex.get(socket.id);
+
+    if(allowToPlay == true) return;
+    mutex.set(socket.id, true);
+
     insertCoin(roomName, col, grids, rooms, socket, io, mutex);
+
+    setTimeout(() => 
+    {
+      mutex.set(socket.id, false);
+    }, 1000)
   })
 
   socket.on("replay", roomName => 
