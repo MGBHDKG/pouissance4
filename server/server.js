@@ -23,6 +23,7 @@ httpServer.listen(PORT)
 
 let rooms = new Map();
 let grids = new Map();
+let mutex = new Map();
 
 io.on("connection", (socket) => 
 {
@@ -47,7 +48,7 @@ io.on("connection", (socket) =>
   //When user injects a coin
   socket.on("insertCoin", (roomName, col) => 
   {
-    insertCoin(roomName, col, grids, rooms, socket, io);
+    insertCoin(roomName, col, grids, rooms, socket, io, mutex);
   })
 
   socket.on("replay", roomName => 

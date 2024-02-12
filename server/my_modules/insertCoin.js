@@ -1,6 +1,6 @@
 import checkWin from "./checkWin/checkWin.js";
 
-export default function insertCoin(roomName, col, grids, rooms, socket, io)
+export default function insertCoin(roomName, col, grids, rooms, socket, io, mutex)
 {
     let room = rooms.get(roomName);
     let grid = grids.get(roomName);
@@ -15,7 +15,13 @@ export default function insertCoin(roomName, col, grids, rooms, socket, io)
         {
           if(grid[k][col] == 0)
           {
+            mutex.set(socket.id, true);
+
             grid[k][col] = i+1;
+
+            let allowToPlay = mutex.get(socket.id);
+
+            if(allowToPlay) return;
 
             io.to(roomName).emit("grid",k, col, room[i].color);
 
@@ -36,6 +42,8 @@ export default function insertCoin(roomName, col, grids, rooms, socket, io)
             io.to(socket.id).emit("notYourTurn", i);
             io.to(room[otherPlayer].id).emit("yourTurn", otherPlayer);
 
+            mutex.set(socket.id, false);
+
             return;
           }
         }
@@ -44,6 +52,5 @@ export default function insertCoin(roomName, col, grids, rooms, socket, io)
         return;
       }
     }
-
     io.to(socket.id).emit("error", "Ce n'est pas à votre tour de jouer !");
 }
