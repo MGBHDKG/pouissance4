@@ -51,7 +51,7 @@ socket.on("newPlayer", (player) => displayNewPlayer(player));
 socket.on("notYourTurn", (i) => disableButtons(i));
 socket.on("yourTurn", (i) => enableButtons(i));
 
-socket.on("grid", (grid, coinPositionY, coinPositionX, color) => {
+socket.on("grid", (coinPositionY, coinPositionX, color) => {
     drawCoin(coinPositionX, coinPositionY, color);
 });
 
@@ -72,4 +72,9 @@ socket.on("win", (pseudo, indexWinner) =>
 socket.on("restartGame", () =>
 {
     restartGame();
+})
+
+socket.on("disconnection", () => 
+{
+    location.reload();
 })
