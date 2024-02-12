@@ -21,7 +21,7 @@ export default function insertCoin(roomName, col, grids, rooms, socket, io, mute
 
             let allowToPlay = mutex.get(socket.id);
 
-            if(allowToPlay) return;
+            if(allowToPlay == true) return;
 
             io.to(roomName).emit("grid",k, col, room[i].color);
 
